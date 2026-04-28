@@ -6,7 +6,7 @@ const cards = [
     icon: SparkIcon,
     title: "You are warmly invited",
     body: "to celebrate the very first birthday of our twin little stars",
-    accent: "hsl(45 100% 70%)",
+    accent: "hsla(324, 90%, 40%, 1.00)",
   },
   {
     icon: Heart,
@@ -29,7 +29,7 @@ const cards = [
   {
     icon: MapPin,
     title: "Venue",
-    body: "Sukhchi Garden, Scheme No. 71, Indore",
+    body: "Suruchi Garden, Scheme No. 71, Indore",
     accent: "hsl(340 90% 72%)",
   },
   {

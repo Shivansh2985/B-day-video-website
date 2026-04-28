@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Fairytale pastel palette — pink + lavender + mint + cream */
+    --background: 340 80% 96%;
+    --foreground: 330 45% 22%;
+
+    --twilight-deep: 330 60% 20%;   /* deep berry — for body text on light */
+    --twilight: 335 70% 92%;        /* primary surface (light pink) */
+    --twilight-soft: 295 70% 88%;   /* lavender surface */
+    --sunset: 28 95% 72%;           /* warm peach accent */
+    --gold: 42 95% 65%;             /* sparkle gold */
+    --gold-deep: 38 88% 52%;
+    --cream: 35 80% 98%;
+    --rose: 340 85% 70%;            /* hero pink */
+    --mint: 158 60% 80%;            /* mint accent */
+    --lilac: 275 75% 82%;
+
+    --card: 335 80% 96%;
+    --card-foreground: 330 50% 22%;
+    --popover: 335 80% 96%;
+    --popover-foreground: 330 50% 22%;
+    --primary: 340 85% 65%;
+    --primary-foreground: 35 80% 98%;
+    --secondary: 275 75% 82%;
+    --secondary-foreground: 330 50% 22%;
+    --muted: 335 50% 92%;
+    --muted-foreground: 330 25% 45%;
+    --accent: 28 95% 72%;
+    --accent-foreground: 330 50% 22%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 35 80% 98%;
+    --border: 340 60% 80% / 0.5;
+    --input: 335 50% 92%;
+    --ring: 340 85% 65%;
+    --radius: 1.25rem;
+
+    --gradient-fairy: radial-gradient(ellipse at 50% 30%, hsl(335 90% 95%) 0%, hsl(295 80% 90%) 45%, hsl(265 70% 85%) 100%);
+    --gradient-rose: linear-gradient(135deg, hsl(340 90% 78%), hsl(310 80% 72%));
+    --gradient-gold: linear-gradient(135deg, hsl(42 100% 78%), hsl(28 95% 68%));
+    --glow-rose: 0 0 60px hsl(340 90% 75% / 0.55), 0 0 120px hsl(310 80% 70% / 0.3);
+    --glow-gold: 0 0 50px hsl(42 100% 70% / 0.6), 0 0 110px hsl(38 95% 60% / 0.3);
+    --glow-soft: 0 30px 80px hsl(330 50% 50% / 0.25);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html, body, #root { height: 100%; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Nunito', system-ui, sans-serif;
+    overflow: hidden;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', serif; }
+}
+
+@layer utilities {
+  .font-display { font-family: 'Fraunces', serif; }
+  .font-mono-tag { font-family: 'JetBrains Mono', monospace; }
+  .bg-fairy { background: var(--gradient-fairy); }
+  .text-glow-rose { text-shadow: 0 0 24px hsl(340 90% 75% / 0.7), 0 2px 8px hsl(330 40% 30% / 0.25); }
+  .text-glow-gold { text-shadow: 0 0 24px hsl(42 100% 70% / 0.8), 0 2px 6px hsl(330 40% 30% / 0.25); }
+  .shadow-glow-rose { box-shadow: var(--glow-rose); }
+  .shadow-glow-gold { box-shadow: var(--glow-gold); }
+  .shadow-soft { box-shadow: var(--glow-soft); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+@keyframes drift {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(20px, -10px); }
+  100% { transform: translate(0, 0); }
+}
+.animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
+.animate-drift { animation: drift 8s ease-in-out infinite; }

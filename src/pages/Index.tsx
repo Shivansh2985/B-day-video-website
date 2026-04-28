@@ -106,6 +106,7 @@ const Index = () => {
 
   const timers = useRef<number[]>([]);
   const audioCtx = useRef<AudioContext | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const ambient = useRef<{ stop: () => void } | null>(null);
 
   /* ── text cycling inside each act ── */
@@ -122,9 +123,9 @@ const Index = () => {
 
   useEffect(() => {
     if (muted) { ambient.current?.stop(); ambient.current = null; }
-    else if (audioCtx.current && phase !== "gate" && !ambient.current) startAmbient();
+    else if (phase !== "gate" && phase !== "loading" && !ambient.current) startAmbient();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [muted]);
+  }, [muted, phase]);
 
   const clearTimers = () => { timers.current.forEach(clearTimeout); timers.current = []; };
   const at = (ms: number, fn: () => void) => timers.current.push(window.setTimeout(fn, ms));
@@ -132,18 +133,20 @@ const Index = () => {
   useEffect(() => () => { clearTimers(); ambient.current?.stop(); }, []);
 
   const startAmbient = () => {
-    if (!audioCtx.current || ambient.current || muted) return;
-    const ctx = audioCtx.current;
-    const master = ctx.createGain();
-    master.gain.value = 0.022;
-    master.connect(ctx.destination);
-    const oscs = [261.63, 329.63, 392, 523.25].map((f) => {
-      const o = ctx.createOscillator(); o.type = "sine"; o.frequency.value = f;
-      const g = ctx.createGain(); g.gain.value = 0.25;
-      o.connect(g).connect(master); o.start(); return o;
-    });
+    if (ambient.current || muted) return;
+    
+    const audio = new Audio("https://res.cloudinary.com/dtz2uig0v/video/upload/v1777406892/music-app/songs/txsadad6nan5ebsjipdk.mp3");
+    audio.loop = true;
+    audio.volume = 0.5;
+    audio.play().catch(e => console.error("Audio play failed:", e));
+    audioRef.current = audio;
+
     ambient.current = {
-      stop: () => { oscs.forEach((o) => { try { o.stop(); } catch { /* */ } }); master.disconnect(); },
+      stop: () => {
+        audio.pause();
+        audio.currentTime = 0;
+        audioRef.current = null;
+      },
     };
   };
 

@@ -174,9 +174,9 @@ const Index = () => {
     at(A * 3, () => setPhase("act6_shinchan"));
     at(A * 4, () => setPhase("act7_fairy"));
     at(A * 5, () => setPhase("act8_doors"));
-    at(A * 5 + 2800, () => setPhase("act9_open"));
-    at(A * 5 + 5500, () => setPhase("reveal"));
-    at(A * 5 + 9000, () => setPhase("complete"));
+    at(A * 5 + 3000, () => setPhase("act9_open"));
+    at(A * 5 + 6000, () => setPhase("reveal"));
+    at(A * 5 + 10000, () => setPhase("complete"));
   };
 
   const replay = () => {

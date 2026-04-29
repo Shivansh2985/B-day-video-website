@@ -82,60 +82,68 @@ export const MessageCards = () => {
             initial={{ opacity: 0, y: 32, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 0.7 + i * 0.28, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden rounded-2xl border border-white/50 backdrop-blur-xl"
+            className="relative overflow-hidden rounded-2xl border border-white/60 backdrop-blur-2xl"
             style={{
               background:
-                "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.10) 100%)",
+                "linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.15) 100%)",
               boxShadow:
-                `0 4px 24px hsl(330 60% 30% / 0.4), inset 0 1px 0 rgba(255,255,255,0.55), inset 0 -1px 0 rgba(0,0,0,0.08)`,
+                `0 12px 40px hsl(330 70% 20% / 0.5), inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(0,0,0,0.1)`,
             }}
           >
             {/* Coloured left accent bar */}
             <div
-              className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl"
-              style={{ background: c.accent, opacity: 0.9 }}
+              className="absolute left-0 top-0 bottom-0 w-1.5 rounded-l-2xl"
+              style={{ background: c.accent, opacity: 1 }}
             />
 
-            <div className="flex items-center gap-3 px-4 py-3.5 pl-5">
+            <div className="flex items-center gap-4 px-4 py-4 pl-6">
               {/* Icon circle */}
               <div
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
                 style={{
-                  background: `radial-gradient(circle at 40% 35%, rgba(255,255,255,0.35), rgba(255,255,255,0.08))`,
-                  border: `1.5px solid rgba(255,255,255,0.5)`,
-                  boxShadow: `0 2px 12px ${c.accent}55`,
+                  background: `radial-gradient(circle at 40% 35%, rgba(255,255,255,0.4), rgba(255,255,255,0.1))`,
+                  border: `2px solid rgba(255,255,255,0.6)`,
+                  boxShadow: `0 4px 15px ${c.accent}66`,
                 }}
               >
                 <c.icon
-                  className="h-5 w-5"
-                  style={{ color: c.accent, filter: `drop-shadow(0 0 6px ${c.accent})` }}
+                  className="h-5.5 w-5.5"
+                  style={{ color: c.accent, filter: `drop-shadow(0 0 8px ${c.accent})` }}
                 />
               </div>
 
               <div className="min-w-0 flex-1">
-                {/* Label */}
+                {/* Title / Label */}
                 <div
                   style={{
-                    fontSize: "clamp(0.6rem, 2.5vw, 0.7rem)",
-                    letterSpacing: "0.28em",
-                    textTransform: "uppercase",
-                    color: c.accent,
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontWeight: 600,
-                    textShadow: `0 0 8px ${c.accent}88`,
+                    fontSize: c.title === "Arisha & Avira" 
+                      ? "clamp(1.2rem, 5.5vw, 1.5rem)" 
+                      : "clamp(0.65rem, 2.8vw, 0.75rem)",
+                    letterSpacing: c.title === "Arisha & Avira" ? "0.01em" : "0.3em",
+                    textTransform: c.title === "Arisha & Avira" ? "none" : "uppercase",
+                    color: "#ffffff",
+                    fontFamily: c.title === "Arisha & Avira" ? "'Fraunces', serif" : "'JetBrains Mono', monospace",
+                    fontWeight: c.title === "Arisha & Avira" ? 800 : 700,
+                    textShadow: c.title === "Arisha & Avira" 
+                      ? "0 2px 10px rgba(0,0,0,0.4), 0 0 20px hsl(340 90% 70% / 0.4)" 
+                      : `0 1px 3px rgba(0,0,0,0.6), 0 0 12px ${c.accent}`,
                   }}
                 >
                   {c.title}
                 </div>
-                {/* Value */}
+                {/* Body / Value */}
                 <div
-                  className="mt-0.5 font-display font-semibold"
+                  className={c.title === "Arisha & Avira" ? "mt-0.5" : "mt-1 font-display font-semibold"}
                   style={{
-                    fontSize: "clamp(0.95rem, 4.2vw, 1.2rem)",
+                    fontSize: c.title === "Arisha & Avira" 
+                      ? "clamp(0.8rem, 3.5vw, 0.95rem)" 
+                      : "clamp(0.95rem, 4.2vw, 1.25rem)",
                     color: "#ffffff",
-                    textShadow:
-                      "0 1px 0 rgba(0,0,0,0.3), 0 2px 12px hsl(330 60% 25% / 0.6)",
-                    lineHeight: 1.25,
+                    textShadow: c.title === "Arisha & Avira"
+                      ? "0 1px 4px rgba(0,0,0,0.4)"
+                      : "0 2px 6px rgba(0,0,0,0.5), 0 0 15px rgba(255,255,255,0.3)",
+                    lineHeight: 1.2,
+                    fontFamily: c.title === "Arisha & Avira" ? "'Nunito', sans-serif" : undefined,
                   }}
                 >
                   {c.body}

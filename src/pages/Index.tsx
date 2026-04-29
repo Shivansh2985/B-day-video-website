@@ -20,6 +20,8 @@ import { WalkingChar } from "@/components/birthday/WalkingChar";
 import { GroupCharRow } from "@/components/birthday/GroupCharRow";
 import { FloatingText } from "@/components/birthday/FloatingText";
 import { BabyFloater } from "@/components/birthday/BabyFloater";
+import demo1 from "@/assets/baby-arishaa.png";
+import demo2 from "@/assets/baby-aviraa.png";
 
 type Phase =
   | "gate" | "loading"
@@ -66,11 +68,11 @@ const ACT_TEXTS: Record<string, string[]> = {
     "…and invites you with love! 🍬",
     "Bring your whole family!",
   ],
-  act4_animals:  [
-    "All the jungle friends gather…",
-    "…calling you to join the fun! 🦁",
-    "It'll be a wild celebration!",
-  ],
+  // act4_animals:  [
+  //   "All the jungle friends gather…",
+  //   "…calling you to join the fun! 🦁",
+  //   "It'll be a wild celebration!",
+  // ],
   act5_ben10:    [
     "It's Hero Time — Ben 10 says:",
     "\"Don't miss Arisha & Avira's Day!\" ⚡",
@@ -135,7 +137,7 @@ const Index = () => {
   const startAmbient = () => {
     if (ambient.current || muted) return;
     
-    const audio = new Audio("https://res.cloudinary.com/dtz2uig0v/video/upload/v1777406892/music-app/songs/txsadad6nan5ebsjipdk.mp3");
+    const audio = new Audio("https://res.cloudinary.com/dtz2uig0v/video/upload/v1777438584/Aashiyan_-_Barfi_Ranbir_Kapoor_Priyanka_Chopra_Pritam_Shreya_Ghoshal_Nikhil_Paul_George_AETrim1777437826200_rwhnzn.mp3");
     audio.loop = true;
     audio.volume = 0.5;
     audio.play().catch(e => console.error("Audio play failed:", e));
@@ -169,14 +171,12 @@ const Index = () => {
     setPhase("act1_tomjerry");
     at(A * 1, () => setPhase("act2_doraemon"));
     at(A * 2, () => setPhase("act3_bheem"));
-    at(A * 3, () => setPhase("act4_animals"));
-    at(A * 4, () => setPhase("act5_ben10"));
-    at(A * 5, () => setPhase("act6_shinchan"));
-    at(A * 6, () => setPhase("act7_fairy"));
-    at(A * 7, () => setPhase("act8_doors"));
-    at(A * 7 + 3800, () => setPhase("act9_open"));
-    at(A * 7 + 7500, () => setPhase("reveal"));
-    at(A * 7 + 12000, () => setPhase("complete"));
+    at(A * 3, () => setPhase("act6_shinchan"));
+    at(A * 4, () => setPhase("act7_fairy"));
+    at(A * 5, () => setPhase("act8_doors"));
+    at(A * 5 + 2800, () => setPhase("act9_open"));
+    at(A * 5 + 5500, () => setPhase("reveal"));
+    at(A * 5 + 9000, () => setPhase("complete"));
   };
 
   const replay = () => {
@@ -228,7 +228,7 @@ const Index = () => {
         />
       </div>
 
-      <Sparkles count={24} />
+      <Sparkles count={60} />
       {phase !== "gate" && phase !== "loading" && <Balloons count={6} />}
 
       {/* ── Petals ── */}
@@ -420,7 +420,17 @@ const Index = () => {
 
       {/* ── INVITATION CARDS ── */}
       <AnimatePresence>
-        {showCards && <MessageCards key="cards" />}
+        {showCards && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 z-[41] bg-black/20 backdrop-blur-[2px]"
+            />
+            <MessageCards key="cards" />
+          </>
+        )}
       </AnimatePresence>
 
       {/* ── CONFETTI ── */}
@@ -501,12 +511,12 @@ const Index = () => {
 
               {/* Left Baby */}
               <div className="absolute left-0 top-1/4 w-[38%] drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)] z-20">
-                <img src={babyArisha} alt="Arisha" className="w-full object-contain" />
+                <img src={demo1} alt="Arisha" className="w-full object-contain" />
               </div>
 
               {/* Right Baby */}
               <div className="absolute right-0 top-1/4 w-[38%] drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)] z-20">
-                <img src={babyAvira} alt="Avira" className="w-full object-contain" />
+                <img src={demo2} alt="Avira" className="w-full object-contain" />
               </div>
             </div>
 
@@ -560,7 +570,7 @@ const Index = () => {
             </div>
 
             {/* Bottom Info */}
-            <div className="mt-12 mb-8 flex flex-col items-center text-xs text-[#a11d33] font-semibold leading-relaxed" style={{ fontFamily: "'Nunito', sans-serif" }}>
+            {/* <div className="mt-12 mb-8 flex flex-col items-center text-xs text-[#a11d33] font-semibold leading-relaxed" style={{ fontFamily: "'Nunito', sans-serif" }}>
               <p className="text-sm">With Best Compliments:</p>
               <p className="text-lg font-bold text-[#8b0000] mt-1 mb-1" style={{ fontFamily: "'Fraunces', serif" }}>
                 Sunil Kumar Sohanlal Jain
@@ -568,7 +578,7 @@ const Index = () => {
               <p>3-B, Shikshak Nagar, Indore</p>
               <p>Chhota Sarafa, Indore</p>
               <p className="font-bold mt-1 text-[#8b0000]">Mo. 7987288221, 9827043456</p>
-            </div>
+            </div> */}
 
             {/* Sticky Enter Button */}
             <motion.div

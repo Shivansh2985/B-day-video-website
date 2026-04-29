@@ -22,6 +22,8 @@ import { FloatingText } from "@/components/birthday/FloatingText";
 import { BabyFloater } from "@/components/birthday/BabyFloater";
 import demo1 from "@/assets/baby-arishaa.png";
 import demo2 from "@/assets/baby-aviraa.png";
+import duo1 from "@/assets/Duo-1.png";
+import duo2 from "@/assets/Duo-2.png";
 
 type Phase =
   | "gate" | "loading"
@@ -402,8 +404,20 @@ const Index = () => {
       {/* ── Baby portraits ── */}
       {showBabies && (
         <>
-          <BabyFloater key={`a-${phase}`} src={babyArisha} name="Arisha" side="left"  triggerKey={phase} />
-          <BabyFloater key={`b-${phase}`} src={babyAvira}  name="Avira"  side="right" triggerKey={phase} />
+          <BabyFloater 
+            key={`a-${phase}`} 
+            src={phase === "act6_shinchan" ? duo1 : babyArisha} 
+            name="Arisha" 
+            side="left"  
+            triggerKey={phase} 
+          />
+          <BabyFloater 
+            key={`b-${phase}`} 
+            src={phase === "act6_shinchan" ? duo2 : babyAvira}  
+            name="Avira"  
+            side="right" 
+            triggerKey={phase} 
+          />
         </>
       )}
 
